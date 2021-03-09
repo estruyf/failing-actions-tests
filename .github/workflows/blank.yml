@@ -49,7 +49,7 @@ jobs:
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches
+            https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches \
             -d '{"ref":"ref"}'
           fi
 
