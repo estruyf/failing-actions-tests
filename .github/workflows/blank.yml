@@ -36,3 +36,12 @@ jobs:
       - name: Run after the fail
         run: |
           echo I run after the fail
+
+  after_fail_with_success:
+    runs-on: ubuntu-latest
+    needs: ['build']
+    if: always() && success()
+    steps:
+      - name: Run after the success
+        run: |
+          echo I run after the success
