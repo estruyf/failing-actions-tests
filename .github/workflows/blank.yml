@@ -17,6 +17,7 @@ jobs:
       - name: Make it fail
         run: |
           echo I make it fail
+          exit 1
 
   after_fail:
     runs-on: ubuntu-latest
