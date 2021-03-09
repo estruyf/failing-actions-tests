@@ -48,7 +48,7 @@ jobs:
             curl -i \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.PAT }}" \
             https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches \
             -d '{"ref": "${{ github.ref }}" }'
           fi
