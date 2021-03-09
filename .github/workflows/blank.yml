@@ -44,7 +44,15 @@ jobs:
     steps:
       - name: Run after the fail
         run: |
-          echo I run after the fail
+          if [[ ${GITHUB_EVENT_NAME} == 'push' ]]; then
+            curl -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Authorization: token ${{ GITHUB_TOKEN }}" \
+            --request POST \
+            --data '{"event_type": "do-something"}' \
+            https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   after_fail_success:
     runs-on: ubuntu-latest
