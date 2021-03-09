@@ -27,4 +27,6 @@ jobs:
       - name: Run after the fail
         run: |
           echo I run after the fail
-          echo ${{ failure() }}
+          echo $FAILED
+        env:
+          FAILED: ${{ failure() }}
