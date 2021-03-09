@@ -45,10 +45,12 @@ jobs:
       - name: Run after the fail
         run: |
           if [[ ${GITHUB_EVENT_NAME} == 'push' ]]; then
-            curl -H "Accept: application/vnd.github.everest-preview+json" \
+            curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            --request POST \
             https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches
+            -d '{"ref":"ref"}'
           fi
 
   after_fail_success:
