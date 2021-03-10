@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        git clone -b dev https://github.com/estruyf/doctor-sample
-        cd doctor-sample
-        ls
-        cat doctor.sample.json
+          git clone -b dev https://github.com/estruyf/doctor-sample
+          cd doctor-sample
+          ls
+          cat doctor.sample.json
 
       # - name: Make it fail
       #   run: |
