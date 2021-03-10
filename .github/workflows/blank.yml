@@ -14,10 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Make it fail
-        run: |
-          echo I make it fail
-          exit 1
+      - run: |
+        git clone -b dev https://github.com/estruyf/doctor-sample
+        cd doctor-sample
+        ls
+        cat doctor.sample.json
+
+      # - name: Make it fail
+      #   run: |
+      #     echo I make it fail
+      #     exit 1
 
   # after_fail_always:
   #   runs-on: ubuntu-latest
@@ -37,21 +43,21 @@ jobs:
   #       run: |
   #         echo I run after the fail.
 
-  after_fail_failure:
-    runs-on: ubuntu-latest
-    needs: ['build']
-    if: failure()
-    steps:
-      - name: Run after the fail
-        run: |
-          if [[ ${GITHUB_EVENT_NAME} == 'push' ]]; then
-            curl -i \
-            -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.PAT }}" \
-            https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches \
-            -d '{"ref": "${{ github.ref }}" }'
-          fi
+  # after_fail_failure:
+  #   runs-on: ubuntu-latest
+  #   needs: ['build']
+  #   if: failure()
+  #   steps:
+  #     - name: Run after the fail
+  #       run: |
+  #         if [[ ${GITHUB_EVENT_NAME} == 'push' ]]; then
+  #           curl -i \
+  #           -X POST \
+  #           -H "Accept: application/vnd.github.v3+json" \
+  #           -H "Authorization: token ${{ secrets.PAT }}" \
+  #           https://api.github.com/repos/estruyf/failing-actions-tests/actions/workflows/6525251/dispatches \
+  #           -d '{"ref": "${{ github.ref }}" }'
+  #         fi
 
   # after_fail_success:
   #   runs-on: ubuntu-latest
