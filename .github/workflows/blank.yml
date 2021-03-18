@@ -12,9 +12,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
-      - name: Make it fail
+      - name: Make it fail 1
+        continue-on-error: true
+        run: |
+          echo I make it fail
+          exit 1
+      
+      - name: Make it fail 2
+        continue-on-error: true
         run: |
           echo I make it fail
           exit 1
